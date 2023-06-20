@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .email-title {
+        font-size: 60px;
+        text-align: center;
+        color: #0b132a;
+        font-weight: 700;
+      }
+      .email-content {
+        text-align: center;
+      }
+      h1 {
+        color: black;
+      }
+      p {
+        color: black;
+        padding: 10px 250px 10px 250px;
+        line-height: 1.6;
+        font-size: 17px;
+      }
+      .button {
+        padding: 20px 30px;
+        font-size: 20px;
+        border-radius: 20px;
+        background-color: #6a4029;
+        color: #ffffff;
+      }
+      .button:hover {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="email-title">CoffeeBrings</h1>
+    <div class="email-content">
+      <h1>Welcome to CoffeeBrings {{email}}</h1>
+      <p>
+        Thank you for signing up in CoffeeBrings. Before you can use
+        CoffeeBrings website to order food and drinks, verify your account by
+        pressing the button below.
+      </p>
+      <a href="{{link}}/auth/verify-email/{{id}}" target="_blank"
+        ><button class="button">Verify Email</button></a
+      >
+    </div>
+  </body>
+</html>
