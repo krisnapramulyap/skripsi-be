@@ -46,27 +46,15 @@ module.exports = {
         password: hashPassword,
         phoneNumber,
         role: "user",
-        status: "active"
+        status: "active",
       };
 
       const result = await authModel.register(setData);
 
-      // const setDataMail = {
-      //   to: result.email,
-      //   subject: "Email Verification",
-      //   template: "email-verification",
-      //   data: {
-      //     id: result.id,
-      //     email: result.email,
-      //     link: process.env.URL_BACKEND,
-      //   },
-      // };
-
-      // await sendMail(setDataMail);
       return helperWrapper.response(
         res,
         200,
-        "Success register user, please verify your email",
+        "Success register user",
         result
       );
     } catch (error) {

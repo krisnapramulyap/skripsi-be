@@ -19,7 +19,7 @@ module.exports = {
 
   postOrderItem: (data) =>
     new Promise((resolve, reject) => {
-      connection.query("INSERT INTO `orderItem` SET ?", data, (err, result) => {
+      connection.query("INSERT INTO `orderitem` SET ?", data, (err, result) => {
         if (!err) {
           resolve(result);
         } else {

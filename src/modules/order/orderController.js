@@ -2,6 +2,7 @@ const { v4: uuid } = require("uuid");
 const helperWrapper = require("../../helpers/wrapper");
 const orderModel = require("./orderModel");
 const productModel = require("../product/productModel");
+const midtrans = require("../../helpers/midtrans");
 
 module.exports = {
   postOrder: async (req, res) => {
@@ -21,7 +22,7 @@ module.exports = {
         id: uuid(),
         idUser,
         idPromo,
-        invoice: "CB-" + Math.random().toString(36).substr(2, 9).toUpperCase(),
+        invoice: "CS-" + Math.random().toString(36).substr(2, 9).toUpperCase(),
         subTotal,
         tax,
         total,
@@ -29,6 +30,12 @@ module.exports = {
         paymentStatus,
       };
 
+      // POST ORDER
+      await orderModel.postOrder(setData);
+
+      // midtrans proses
+      const resultMidtrans = await midtrans.post(setData.id, setData.total);
+      // console.log(resultMidtrans);
       // CHECK PRODUCT ID
       orderItem.map(async (item) => {
         const product = await productModel.getProductById(item.productId);
@@ -41,9 +48,6 @@ module.exports = {
           );
         }
       });
-
-      // POST ORDER
-      await orderModel.postOrder(setData);
 
       // POST ORDER ITEM
       orderItem.map(async (item) => {
@@ -59,6 +63,7 @@ module.exports = {
       const result = {
         ...setData,
         orderItem,
+        urlRedirect: resultMidtrans,
       };
 
       return helperWrapper.response(res, 200, "Success Create Data", result);
