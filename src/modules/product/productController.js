@@ -108,21 +108,48 @@ module.exports = {
         category,
       };
       if (
-        name.length < 1 ||
-        size.length < 1 ||
-        price.length < 1 ||
-        description.length < 1 ||
+        name.length < 1
+      ) {
+        return helperWrapper.response(
+          res,
+          400,
+          "Nama produk harus diisi",
+          null
+        );
+      }
+      if (
+        price.length < 1 
+      ) {
+        return helperWrapper.response(
+          res,
+          400,
+          "Harap masukan harga produk",
+          null
+        );
+      }
+      
+      if (
         category.length < 1
       ) {
         return helperWrapper.response(
           res,
           400,
-          "All input must be filled",
+          "Harap memilih catergory produk",
+          null
+        );
+      }
+      if (
+        description.length < 1 
+      ) {
+        return helperWrapper.response(
+          res,
+          400,
+          "Deskripsi produk harus diisi",
           null
         );
       }
       const result = await productModel.postProduct(setData);
-      return helperWrapper.response(res, 200, "Success post product", result);
+      return helperWrapper.response(res, 200, "Produk berhasil dibuat", result);
     } catch (error) {
       return helperWrapper.response(
         res,
