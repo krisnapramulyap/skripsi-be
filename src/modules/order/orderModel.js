@@ -1,5 +1,5 @@
 const connection = require("../../config/mysql");
-// const { getOrderByUserId } = require("./orderController")
+const { getOrderByUserId } = require("./orderController")
 
 module.exports = {
   postOrder: (data) =>

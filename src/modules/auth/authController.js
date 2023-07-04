@@ -20,22 +20,38 @@ module.exports = {
     try {
       const { email, password, phoneNumber } = req.body;
       const checkUser = await authModel.getUserByEmail(email);
-      if (email.length < 1 || password.length < 1 || phoneNumber.length < 1) {
+      if (email.length < 1 ) {
         return helperWrapper.response(
           res,
           400,
-          "All input must be filled",
+          "Email tidak boleh kosong",
+          null
+        );
+      }
+      if (password.length < 1) {
+        return helperWrapper.response(
+          res,
+          400,
+          "Password tidak boleh kosong",
+          null
+        );
+      }
+      if (phoneNumber.length < 1) {
+        return helperWrapper.response(
+          res,
+          400,
+          "No Telphone tidak boleh kosong",
           null
         );
       }
       if (checkUser.length > 0) {
-        return helperWrapper.response(res, 409, "Email already used", null);
+        return helperWrapper.response(res, 409, "Email sudah terdaftar", null);
       }
-      if (password.length < 6) {
+      if (password.length < 8) {
         return helperWrapper.response(
           res,
           400,
-          "Password must be more than 6 character"
+          "Password harus lebih dari 7 karakter"
         );
       }
       // PROSES ENCRYPT PASSWORD
@@ -95,11 +111,19 @@ module.exports = {
     try {
       const { email, password } = req.body;
       const checkUser = await authModel.getUserByEmail(email);
-      if (email.length < 1 || password.length < 1) {
+      if (email.length < 1 ) {
         return helperWrapper.response(
           res,
           400,
-          "All input must be filled",
+          "Email tidak boleh kosong",
+          null
+        );
+      }
+      if (password.length < 1) {
+        return helperWrapper.response(
+          res,
+          400,
+          "Password tidak boleh kosong",
           null
         );
       }
@@ -107,7 +131,7 @@ module.exports = {
         return helperWrapper.response(
           res,
           404,
-          "Email is not registered",
+          "Email tidak terdaftar",
           null
         );
       }
@@ -126,7 +150,7 @@ module.exports = {
         checkUser[0].password
       );
       if (!matchPassword) {
-        return helperWrapper.response(res, 400, "Wrong password", null);
+        return helperWrapper.response(res, 400, "Password salah", null);
       }
       const payload = checkUser[0];
       delete payload.password;
