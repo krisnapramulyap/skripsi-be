@@ -1,5 +1,6 @@
 const helperResponse = require("../../helpers/wrapper/index");
 const promoModel = require("./promoRepository");
+const helperWrapper = require("../../helpers/wrapper");
 const deleteFile = require("../../helpers/deleteFile");
 const { v4: uuid } = require("uuid");
 
@@ -30,6 +31,76 @@ module.exports = {
         dateEnd,
         image: req.file ? req.file.filename : null,
       };
+      if (
+        name.length < 1 
+      ) {
+        return helperWrapper.response(
+          res,
+          400,
+          "Nama promo harus diisi",
+          null
+        );
+      }
+      if (
+        minTotalPrice.length < 4
+      ) {
+        return helperWrapper.response(
+          res,
+          400,
+          "Minimal pembelanjaan harus diisi",
+          null
+        );
+      }
+      if (
+        maxDiscount.length < 4 
+      ) {
+        return helperWrapper.response(
+          res,
+          400,
+          "Total diskon harus diisi",
+          null
+        );
+      }
+      if (
+        promoCode.length < 1 
+      ) {
+        return helperWrapper.response(
+          res,
+          400,
+          "Harap masukan kode promo",
+          null
+        );
+      }
+      if (
+        description.length < 1 
+      ) {
+        return helperWrapper.response(
+          res,
+          400,
+          "Harap masukan deskripsi promo",
+          null
+        );
+      }
+      if (
+        dateStart.length < 1 
+      ) {
+        return helperWrapper.response(
+          res,
+          400,
+          "Harap masukan tanggal mulai promo",
+          null
+        );
+      }
+      if (
+        dateEnd.length < 1 
+      ) {
+        return helperWrapper.response(
+          res,
+          400,
+          "Harap masukan tanggal berakhir promo",
+          null
+        );
+      }
       const result = await promoModel.postPromo(setData);
       //   console.log(result);
       return helperResponse.response(res, 200, "Success Create Data", result);
