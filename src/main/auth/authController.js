@@ -1,10 +1,10 @@
 require("dotenv").config();
-const authModel = require("./authModel");
+const authModel = require("./authRepository");
 const helperWrapper = require("../../helpers/wrapper");
 const sendMailForgot = require("../../helpers/mail");
 const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
-const userModel = require("../user/userModel");
+const userModel = require("../user/userRepository");
 
 const generateKey = () => {
   const res = Math.floor(100000 + Math.random() * 900000);

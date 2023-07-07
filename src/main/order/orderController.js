@@ -1,7 +1,7 @@
 const { v4: uuid } = require("uuid");
 const helperWrapper = require("../../helpers/wrapper");
-const orderModel = require("./orderModel");
-const productModel = require("../product/productModel");
+const orderModel = require("./orderRepository");
+const productModel = require("../product/productRepository");
 const midtrans = require("../../helpers/midtrans");
 
 module.exports = {

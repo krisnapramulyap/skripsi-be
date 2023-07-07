@@ -1,4 +1,4 @@
-const connection = require("../../config/mysql");
+const connection = require("../../config/database");
 
 module.exports = {
   getDataConditions: (data) => {

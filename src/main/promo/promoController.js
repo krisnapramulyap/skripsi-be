@@ -1,5 +1,5 @@
 const helperResponse = require("../../helpers/wrapper/index");
-const promoModel = require("./promoModel");
+const promoModel = require("./promoRepository");
 const deleteFile = require("../../helpers/deleteFile");
 const { v4: uuid } = require("uuid");
 

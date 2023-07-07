@@ -1,5 +1,5 @@
 const { v4: uuidv4 } = require("uuid");
-const productModel = require("./productModel");
+const productModel = require("./productRepository");
 const helperWrapper = require("../../helpers/wrapper");
 const deleteFile = require("../../helpers/deleteFile");
 

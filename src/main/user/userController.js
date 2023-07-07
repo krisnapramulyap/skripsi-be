@@ -1,7 +1,7 @@
 const bcryptjs = require("bcrypt");
 const helperWrapper = require("../../helpers/wrapper");
 const deleteFile = require("../../helpers/deleteFile");
-const userModel = require("./userModel");
+const userModel = require("./userRepository");
 
 module.exports = {
   getUserById: async (req, res) => {

@@ -1,12 +1,12 @@
 const express = require("express");
 const Router = express.Router();
 
-const userRoutes = require("../modules/user/userRoutes");
-const authRoutes = require("../modules/auth/authRoutes");
-const promoRouter = require("../modules/promo/promoRoutes");
-const productRoutes = require("../modules/product/productRoutes");
-const orderRoutes = require("../modules/order/orderRoutes");
-const dashboardRoutes = require("../modules/dashboard/dashboardRoutes");
+const userRoutes = require("../main/user/userRoutes");
+const authRoutes = require("../main/auth/authRoutes");
+const promoRouter = require("../main/promo/promoRoutes");
+const productRoutes = require("../main/product/productRoutes");
+const orderRoutes = require("../main/order/orderRoutes");
+const dashboardRoutes = require("../main/dashboard/dashboardRoutes");
 
 Router.use("/auth", authRoutes);
 Router.use("/user", userRoutes);

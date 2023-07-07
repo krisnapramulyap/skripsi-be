@@ -1,9 +1,9 @@
-const connection = require("../../config/mysql");
+const connection = require("../../config/database");
 
 module.exports = {
   register: (data) =>
     new Promise((resolve, reject) => {
-      connection.query("INSERT INTO users SET?", data, (error, result) => {
+      connection.query("INSERT INTO user SET?", data, (error, result) => {
         if (!error) {
           const newResult = {
             id: result.insertId,

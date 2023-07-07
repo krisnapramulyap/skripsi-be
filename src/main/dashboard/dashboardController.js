@@ -1,4 +1,4 @@
-const dashboardModel = require("./dashboardModel");
+const dashboardModel = require("./dashboardRepository");
 const helperWrapper = require("../../helpers/wrapper");
 const moment = require("moment");
 
